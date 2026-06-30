@@ -1,4 +1,4 @@
-# AI Coffee Match — Prototype V3
+# MyKopi — Prototype V3
 
 Versi ini menambahkan fitur dynamic quiz, reset, dan riwayat hasil sementara.
 
