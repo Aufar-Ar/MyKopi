@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyKopi — Prototype V2</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="#">
+      <div class="brand-icon">☕</div>
+      <div>
+        <strong>MyKopi</strong>
+        <span>Personalized specialty coffee</span>
+      </div>
+    </a>
+    <nav>
+      <a href="#how">Cara Kerja</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#catalog">Katalog</a>
+      <a href="#products">Paket</a>
+    </nav>
+    <a class="nav-cta" href="#quiz">Mulai Quiz</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Prototype Technopreneur Product</p>
+        <h1>Temukan kopi yang cocok dengan selera, mood, dan gaya minummu.</h1>
+        <p class="hero-desc">
+          AI Coffee Match membantu pemula memilih kopi specialty melalui quiz dinamis. Pertanyaan dapat berubah setiap reset, tetapi sistem tetap membaca preferensi rasa dan mengarahkan pengguna ke rekomendasi kopi yang relevan.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#quiz">Coba MyKopi</a>
+          <a class="secondary-btn" href="#catalog">Lihat Katalog Kopi</a>
+        </div>
+        <div class="trust-row">
+          <div><strong>4</strong><span>Persona rasa</span></div>
+          <div><strong>12</strong><span>Katalog kopi</span></div>
+          <div><strong>1–2</strong><span>Menit quiz</span></div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="coffee-cup">
+          <div class="steam s1"></div>
+          <div class="steam s2"></div>
+          <div class="steam s3"></div>
+          <div class="cup">☕</div>
+        </div>
+        <div class="taste-card">
+          <span>AI Taste Profile</span>
+          <h3>The Explorer</h3>
+          <p>Fruity • Complex • Natural Process</p>
+        </div>
+        <div class="floating-chip chip-1">Kintamani Natural</div>
+        <div class="floating-chip chip-2">Toraja Honey</div>
+      </div>
+    </section>
+
+    <section id="how" class="section">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Konsep produk yang lebih jelas</h2>
+        <p>
+          Website ini memiliki dua jalur pembelian: rekomendasi personal melalui quiz dan pembelian langsung melalui katalog kopi.
+        </p>
+      </div>
+
+      <div class="steps">
+        <article>
+          <span>01</span>
+          <h3>Quiz Preferensi</h3>
+          <p>Pengunjung menjawab pertanyaan tentang rasa, suasana, tujuan minum kopi, dan roast level.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Dynamic Matching</h3>
+          <p>Sistem menghitung persona rasa dan menampilkan kopi yang cocok dengan profil tersebut.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Direct Catalog</h3>
+          <p>Pengunjung yang sudah tahu seleranya dapat langsung memilih kopi dari katalog tanpa mengikuti quiz.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="quiz" class="quiz-section">
+      <div class="quiz-shell">
+        <div class="quiz-info">
+          <p class="eyebrow">Interactive Quiz</p>
+          <h2>Temukan profil kopimu</h2>
+          <p>
+            Pilih jawaban yang paling menggambarkan kebiasaanmu. Setiap reset akan menampilkan kombinasi pertanyaan baru dari bank pertanyaan.
+          </p>
+
+          <div class="mini-benefits">
+            <div>✓ Cocok untuk pemula kopi specialty</div>
+            <div>✓ Rekomendasi berubah sesuai hasil quiz</div>
+            <div>✓ Pertanyaan diacak setiap reset</div>
+            <div>✓ Riwayat hasil tersimpan selama halaman belum di-refresh</div>
+          </div>
+        </div>
+
+        <div class="quiz-card">
+          <div class="progress-wrap">
+            <div class="progress-label">
+              <span id="progressText">Pertanyaan 1 dari 6</span>
+              <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar"><div id="progressFill"></div></div>
+          </div>
+
+          <div id="questionBox"></div>
+
+          <div class="quiz-controls">
+            <button id="prevBtn" class="ghost-btn">Kembali</button>
+            <button id="resetBtn" class="ghost-btn reset-btn">Reset Quiz</button>
+            <button id="nextBtn" class="primary-btn">Lanjut</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultSection" class="result-section hidden">
+      <div class="result-card">
+        <div class="result-main">
+          <p class="eyebrow">Your Coffee Persona</p>
+          <h2 id="personaTitle">The Explorer</h2>
+          <p id="personaDesc"></p>
+
+          <div class="profile-meter">
+            <div>
+              <span>Fruity</span>
+              <div><b id="meterFruity"></b></div>
+            </div>
+            <div>
+              <span>Chocolatey</span>
+              <div><b id="meterChocolatey"></b></div>
+            </div>
+            <div>
+              <span>Bold</span>
+              <div><b id="meterBold"></b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-side">
+          <h3>Rekomendasi untukmu</h3>
+          <ul id="recommendationList"></ul>
+          <a class="primary-btn full" href="#matchedCatalog">Lihat Kopi yang Cocok</a>
+          
+          <!-- Tombol Share Baru -->
+          <button id="shareBtn" class="secondary-btn full" style="margin-top: 12px; border-color: #f2b66d; background: #fffaf1;">📸 Bagikan Hasil (IG / Sosmed)</button>
+          
+          <button id="resultResetBtn" class="ghost-btn full reset-result-btn">Coba Pertanyaan Baru</button>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="historySection" class="section history-section hidden">
+      <div class="section-head split-head">
+        <div>
+          <p class="eyebrow">Session History</p>
+          <h2>Riwayat hasil sebelum reset</h2>
+          <p>
+            Riwayat ini hanya tersimpan sementara selama halaman masih terbuka. Jika halaman di-refresh, riwayat akan hilang.
+          </p>
+        </div>
+        <div class="catalog-note">
+          <strong>Catatan prototype:</strong>
+          <span>Fitur ini berguna untuk membandingkan hasil persona pengguna dari beberapa percobaan quiz.</span>
+        </div>
+      </div>
+      <div id="historyGrid" class="history-grid"></div>
+    </section>
+
+    <section id="matchedCatalog" class="section matched-section hidden">
+      <div class="section-head">
+        <p class="eyebrow">Matched Coffee</p>
+        <h2>Kopi yang cocok dengan hasil quiz</h2>
+        <p>
+          Bagian ini berubah otomatis berdasarkan persona pengguna. Inilah pembeda utama dari katalog biasa.
+        </p>
+      </div>
+      <div id="matchedGrid" class="catalog-grid"></div>
+    </section>
+
+    <section id="catalog" class="section">
+      <div class="section-head split-head">
+        <div>
+          <p class="eyebrow">Coffee Catalog</p>
+          <h2>Katalog kopi</h2>
+          <p>
+            Pengunjung bisa membeli langsung dari katalog ini tanpa mengikuti quiz. Setiap kopi dilengkapi deskripsi origin, proses, roast level, tasting notes, dan rekomendasi metode seduh.
+          </p>
+        </div>
+        <div class="catalog-note">
+          <strong>Fungsi katalog:</strong>
+          <span>Memberi kebebasan bagi konsumen yang sudah tahu pilihan kopi dari awal.</span>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">Semua</button>
+        <button class="filter-btn" data-filter="fruity">Fruity</button>
+        <button class="filter-btn" data-filter="chocolatey">Chocolatey</button>
+        <button class="filter-btn" data-filter="bold">Bold</button>
+        <button class="filter-btn" data-filter="smooth">Smooth</button>
+        <button class="filter-btn" data-filter="premium">Premium</button>
+      </div>
+
+      <div id="catalogGrid" class="catalog-grid"></div>
+    </section>
+
+    <section id="products" class="section">
+      <div class="section-head">
+        <p class="eyebrow">Bundle & Upsell</p>
+        <h2>Paket penjualan</h2>
+        <p>
+          Bagian ini adalah strategi monetisasi. Paket dapat tetap menjadi branding utama, sementara isi rekomendasinya mengikuti profil rasa pengguna.
+        </p>
+      </div>
+
+      <div class="product-grid">
+        <article class="product-card">
+          <div class="product-badge">Best for Trial</div>
+          <h3>Starter Discovery Box</h3>
+          <p>3 sampel kopi 50 gram. Cocok untuk pembeli baru yang ingin mencoba beberapa profil rasa.</p>
+          <ul>
+            <li>Isi dapat disesuaikan dengan hasil quiz</li>
+            <li>Brew guide sederhana</li>
+            <li>Kartu profil rasa</li>
+          </ul>
+          <strong>Rp79.000</strong>
+          <button class="cart-btn" data-product="Starter Discovery Box">Tambah ke Keranjang</button>
+        </article>
+
+        <article class="product-card featured">
+          <div class="product-badge">Recommended</div>
+          <h3>Monthly Coffee Match</h3>
+          <p>Paket bulanan 2 varian kopi berdasarkan profil rasa dan histori pembelian.</p>
+          <ul>
+            <li>2 x 100 gram kopi pilihan</li>
+            <li>Rekomendasi brew method</li>
+            <li>Update profil rasa berkala</li>
+          </ul>
+          <strong>Rp149.000/bulan</strong>
+          <button class="cart-btn" data-product="Monthly Coffee Match">Tambah ke Keranjang</button>
+        </article>
+
+        <article class="product-card">
+          <div class="product-badge">Premium</div>
+          <h3>Origin Explorer Pack</h3>
+          <p>Paket single origin pilihan untuk pengguna yang suka eksplorasi rasa.</p>
+          <ul>
+            <li>Kopi origin Indonesia dan internasional</li>
+            <li>Natural, honey, atau washed process</li>
+            <li>Tasting notes detail</li>
+          </ul>
+          <strong>Rp189.000</strong>
+          <button class="cart-btn" data-product="Origin Explorer Pack">Tambah ke Keranjang</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="business-section">
+      <div>
+        <p class="eyebrow">Business Model</p>
+        <h2>Keterbaruan yang ditonjolkan</h2>
+      </div>
+      <div class="business-grid">
+        <article>
+          <h3>Personalized Coffee Journey</h3>
+          <p>Pengalaman memilih kopi dibuat personal melalui persona rasa, bukan sekadar daftar produk.</p>
+        </article>
+        <article>
+          <h3>Catalog + Quiz Funnel</h3>
+          <p>Website melayani dua tipe konsumen: yang bingung memilih dan yang sudah punya preferensi.</p>
+        </article>
+        <article>
+          <h3>Data-Driven Upsell</h3>
+          <p>Hasil quiz dipakai untuk menawarkan starter pack, subscription, dan premium pack yang relevan.</p>
+        </article>
+        <article>
+          <h3>Education-Based Branding</h3>
+          <p>Deskripsi kopi membantu pengunjung belajar origin, proses, roast level, tasting notes, dan metode seduh.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <aside id="cartToast" class="cart-toast hidden">
+    <strong>Produk ditambahkan</strong>
+    <span id="cartText"></span>
+  </aside>
+
+  <footer>
+    <div class="brand">
+      <div class="brand-icon">☕</div>
+      <div>
+        <strong>MyKopi</strong>
+        <span>Prototype for technopreneur final project</span>
+      </div>
+    </div>
+    <p>© 2026 MyKopi. Prototype akademik.</p>
+  </footer>
+
+  <!-- Tambahkan ini tepat di atas script.js Anda -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
